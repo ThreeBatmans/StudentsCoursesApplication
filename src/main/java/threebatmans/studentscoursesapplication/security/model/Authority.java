@@ -3,9 +3,9 @@ package threebatmans.studentscoursesapplication.security.model;
 import org.hibernate.annotations.NaturalId;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Authority implements GrantedAuthority {
@@ -15,12 +15,21 @@ public class Authority implements GrantedAuthority {
 
     @NaturalId
     private String authority;
+    @ManyToMany(
+            fetch = FetchType.EAGER,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+            mappedBy = "authorities"
+            // reverse
+    )
+    private List<User> userList;
 
     public Authority() {
+        this.userList = new ArrayList<>();
     }
 
     public Authority(String authority) {
         this.authority = authority;
+        this.userList = new ArrayList<>();
     }
 
     public long getId() {
@@ -38,5 +47,13 @@ public class Authority implements GrantedAuthority {
 
     public void setAuthority(String authority) {
         this.authority = authority;
+    }
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 }

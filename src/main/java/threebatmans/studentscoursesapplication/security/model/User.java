@@ -1,5 +1,6 @@
 package threebatmans.studentscoursesapplication.security.model;
 
+import org.hibernate.annotations.NaturalId;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -12,6 +13,8 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NaturalId
     private String username;
     private String password;
     @ManyToMany(
@@ -24,6 +27,9 @@ public class User implements UserDetails {
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean enabled;
+
+    private String firstname;
+    private String lastname;
 
     public User() {
         this.accountNonExpired = true;
@@ -138,5 +144,13 @@ public class User implements UserDetails {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 }
