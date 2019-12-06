@@ -3,7 +3,7 @@
 }
 
 body {
-    background-image: url("../static/asset/batman.jpg");
+    background-image: url("/asset/batman.jpg");
 
 }
 

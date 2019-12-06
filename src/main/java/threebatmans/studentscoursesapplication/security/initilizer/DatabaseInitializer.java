@@ -69,7 +69,11 @@ public class DatabaseInitializer implements CommandLineRunner {
         for (String username : usernameList) {
 
             if (!userRepository.findByUsername(username).isPresent()) {
+
                 User user = new User(username);
+                user.setAuthorities(new ArrayList<Authority>());
+                userRepository.save(user);
+
                 authorityRepository
                         .findByAuthority(AuthorityType.USER.name())
                         .ifPresent(user.getAuthorities()::add);

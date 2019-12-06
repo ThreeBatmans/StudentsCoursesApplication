@@ -23,7 +23,7 @@ public class UserController {
 
     @ModelAttribute
     private void init(Model model) {
-        model.addAttribute("authorityList", authorityRepository.findAllByOrOrderByAuthority());
+        model.addAttribute("authorityList", authorityRepository.findAllByOrderByAuthority());
     }
 
     @GetMapping("/create")

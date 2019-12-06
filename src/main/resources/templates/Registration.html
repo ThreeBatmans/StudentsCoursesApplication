@@ -10,31 +10,38 @@
 <body style="background-color: #c1c9d6">
 <div th:replace="index::navlink"></div>
 <h4 style="padding-top: 50px;padding-left: 200px">New User Registration</h4>
-<form autocomplete="off" action="#" th:action="@{/register}"  th:object="${user}" method="post" style="width: 600px;padding-left: 200px;padding-top: 50px">
+<!--/*@thymesVar id="user" type="threebatmans.studentscoursesapplication.security.binder.UserBinder"*/-->
+<!--/*@thymesVar id="action" type="java.lang.String"*/-->
+<!--/*@thymesVar id="method" type="java.lang.String"*/-->
+<form autocomplete="off" action="#" th:action="@{${action}}"  th:object="${user}" th:method="${method}" style="width: 600px;padding-left: 200px;padding-top: 50px">
     <div class="form-group">
         <input type="hidden"  th:field="*{id}">
     </div>
     <div class="form-group">
         <label for="formGroupExampleInput">First Name</label>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="First Name"  th:field="*{firstName}">
-        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="First Name"  th:field="*{firstname}">
+        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstname}"></span>
     </div>
     <div class="form-group">
         <label for="formGroupExampleInput1">Last Name</label>
-        <input type="text" class="form-control" id="formGroupExampleInput1" placeholder="Last Name" th:field="*{lastName}">
-        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+        <input type="text" class="form-control" id="formGroupExampleInput1" placeholder="Last Name" th:field="*{lastname}">
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastname}"></span>
     </div>
     <div class="form-group">
         <label for="formGroupExampleInput12">Email</label>
-        <input type="text" class="form-control" id="formGroupExampleInput12" placeholder="Email" th:field="*{email}">
-        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+        <input type="text" class="form-control" id="formGroupExampleInput12" placeholder="Email" th:field="*{username}">
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{username}"></span>
     </div>
     <div class="form-group">
         <label for="formGroupExampleInput1234"> Password</label>
-        <input type="text" class="form-control" id="formGroupExampleInput1234" placeholder="password" th:field="*{password}">
+        <input type="password" class="form-control" id="formGroupExampleInput1234" placeholder="password" th:field="*{password}">
         <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
     </div>
-
+    <div class="form-group">
+        <label for="formGroupExampleInput1234V"> Password Verify</label>
+        <input type="password" class="form-control" id="formGroupExampleInput1234V" placeholder="password" th:field="*{passwordVerify}">
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{passwordVerify}"></span>
+    </div>
     <button  type="submit" class="btn btn-primary">Submit</button>
 </form>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

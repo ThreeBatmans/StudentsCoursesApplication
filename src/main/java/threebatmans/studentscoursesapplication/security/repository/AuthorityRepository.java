@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface AuthorityRepository extends CrudRepository<Authority, Long> {
     Optional<Authority> findByAuthority(String authority);
-    List<Authority> findAllByOrOrderByAuthority();
+    List<Authority> findAllByOrderByAuthority();
 }

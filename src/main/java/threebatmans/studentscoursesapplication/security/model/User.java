@@ -2,6 +2,7 @@ package threebatmans.studentscoursesapplication.security.model;
 
 import org.hibernate.annotations.NaturalId;
 import org.springframework.security.core.userdetails.UserDetails;
+import threebatmans.studentscoursesapplication.security.service.PasswordEncoder;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class User implements UserDetails {
     }
 
     public User(String username) {
-        this(username, "password");
+        this(username, PasswordEncoder.getInstance().encode("password"));
     }
 
     public User(String username, String password) {
