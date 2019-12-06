@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import threebatmans.studentscoursesapplication.security.model.User;
+import threebatmans.studentscoursesapplication.security.repository.UserRepository;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -27,18 +29,27 @@ public class HomeController {
     @Autowired
     CloudinaryConfig cloudc;
 
+    @Autowired
+    UserRepository userRepository;
+
     @GetMapping("/")
     public String Homepage(Model model){
         model.addAttribute("courses",courseRepository.findAll());
         return "index";
     }
 
+    @GetMapping("/register")
+    public String registration(Model model){
+        model.addAttribute("user",new User());
+        return "Registration";
+    }
     @GetMapping("/addstudent")
     public String addStudent(Model model){
         model.addAttribute("student",new Student());
         model.addAttribute("courses",courseRepository.findAll());
         return "studentform";
     }
+
 
     @PostMapping("/processstudent")
     public String processStudent(@Valid()@ModelAttribute Student student, @RequestParam("courseId") long id, @RequestParam("file") MultipartFile file, BindingResult result){
@@ -161,12 +172,12 @@ public class HomeController {
 
     @PostMapping("/searchcourse")
     public String SearchPageCourse(Model model, @RequestParam("search") String search) {
-        model.addAttribute("course",courseRepository.findByNameContainingIgnoreCase(search));
+        model.addAttribute("courses",courseRepository.findByNameContainingIgnoreCase(search));
         return "searchindex1";
     }
     @PostMapping("/searchstudent")
     public String SearchPageStudent(Model model, @RequestParam("search") String search) {
-        model.addAttribute("course",courseRepository.findByNameContainingIgnoreCase(search));
+        model.addAttribute("students",studentRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(search,search));
         return "searchindex2";
     }
 

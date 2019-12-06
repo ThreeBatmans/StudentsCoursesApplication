@@ -4,6 +4,7 @@
 
 body {
     background-image: url("/asset/batman.jpg");
+     background-size: auto;
 
 }
 

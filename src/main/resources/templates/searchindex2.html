@@ -2,10 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
-
+    <title>Student Search</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body >
 <div th:replace="base::navbar"></div>
@@ -16,26 +14,29 @@
 
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-            <h1 class="my-4 pt-5">Course List</h1>
+            <h1 class="my-4 pt-5">Student Search</h1>
 
-            <div th:each="course: ${courses}"  class="card" >
+            <div th:each="student: ${students}"  class="card" >
+                <div th:if="${student.pic} != null">
+                    <img class="card-img-top" th:src="${student.pic}" alt="Card image cap" >
+                </div>
                 <div class="card-body">
-                   Course name :  <span th:text="${course.name}"></span><br/>
-                    Instructor :  <span th:text="${course.teacher}"></span><br/>
-                    Course Id:  <span th:text="${course.id}"></span><br/>
-                    Description:  <span th:text="${course.description}"></span><br/>
+                    First name :  <span th:text="${student.firstName}"></span><br/>
+                    Last name :  <span th:text="${student.lastName}"></span><br/>
+                    ID:  <span th:text="${student.id}"></span><br/>
+
 
                 </div>
 
                 <div class="row">
                     <div class="col-md-4">
-                        <a style="margin: 10px" class="btn btn-primary" th:href="@{/update/course/{id}(id=${course.id})}">Update</a>
+                        <a style="margin: 10px" class="btn btn-primary" th:href="@{/update/{id}(id=${student.id})}">Update</a>
                     </div>
                     <div class="col-md-4">
-                        <a style="margin: 10px"  class="btn btn-info"th:href="@{/detail/course/{id}(id=${course.id})}">Detail</a>
+                        <a style="margin: 10px"  class="btn btn-info"th:href="@{/detail/{id}(id=${student.id})}">Detail</a>
                     </div>
                     <div class="col-md-4">
-                        <a style="margin: 10px" class="btn btn-danger" th:href="@{/delete/course/{id}(id=${course.id})}">Delete</a>
+                        <a style="margin: 10px" class="btn btn-danger" th:href="@{/delete/{id}(id=${student.id})}">Delete</a>
                     </div>
                 </div>
             </div>

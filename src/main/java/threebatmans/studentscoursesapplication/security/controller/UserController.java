@@ -28,10 +28,11 @@ public class UserController {
 
     @GetMapping("/create")
     private String create(Model model) {
+
         model.addAttribute("user", new User());
         model.addAttribute("action","/user/create");
         model.addAttribute("method", "POST");
-        return "user_create";
+        return "Registration";
     }
 
     @PostMapping("/create")
@@ -45,7 +46,7 @@ public class UserController {
             userBinder.setId(0);
             model.addAttribute("user", userBinder);
 
-            return "user_update";
+            return "Registration";
         }
 
         // if BOTH password and passwordVerify is not empty and it is not match!
