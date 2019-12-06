@@ -36,11 +36,11 @@ public class HomeController {
     @GetMapping("/addstudent")
     public String addStudent(Model model){
         model.addAttribute("student",new Student());
-        model.addAttribute("course",courseRepository.findAll());
+        model.addAttribute("courses",courseRepository.findAll());
         return "studentform";
     }
 
-    @PostMapping("/processstuent")
+    @PostMapping("/processstudent")
     public String processStudent(@Valid()@ModelAttribute Student student, @RequestParam("courseId") long id, @RequestParam("file") MultipartFile file, BindingResult result){
 
         //check for error
@@ -49,7 +49,7 @@ public class HomeController {
             return "redirect:/addstudent";
         }
         if(result.hasErrors()){
-            return "addstudent";
+            return "/addstudent";
         }
 
         //add course to student

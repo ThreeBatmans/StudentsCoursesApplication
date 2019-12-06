@@ -24,12 +24,13 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception{
 
-        Course course=new Course("Java101","Victor","Introduction to Java");
+        Course course;
+        course=new Course("Java101","Victor","Introduction to Java");
         Set<Course> cour = new HashSet<>();
         cour.add(course);
+
         Student student=new Student("Petros","Melake","1984","https://res.cloudinary.com/dyarncgbq/image/upload/v1575589919/cjmlg015rgoqfjfanamo.jpg",cour);
-
-
+        studentRepository.save(student);
 
 
     }

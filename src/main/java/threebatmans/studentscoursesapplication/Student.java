@@ -11,7 +11,7 @@ public class Student {
     private long id;
     private String firstName;
     private String lastName;
-    private String DoB;
+    private String dob;
     private String pic;
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
@@ -24,7 +24,7 @@ public class Student {
     public Student(String firstName, String lastName, String doB, String pic, Set<Course> courses) {
         this.firstName = firstName;
         this.lastName = lastName;
-        DoB = doB;
+        this.dob = doB;
         this.pic = pic;
         this.courses = courses;
     }
@@ -53,12 +53,12 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public String getDoB() {
-        return DoB;
+    public String getDob() {
+        return dob;
     }
 
-    public void setDoB(String doB) {
-        DoB = doB;
+    public void setDob(String dob) {
+        this.dob = dob;
     }
 
     public String getPic() {
