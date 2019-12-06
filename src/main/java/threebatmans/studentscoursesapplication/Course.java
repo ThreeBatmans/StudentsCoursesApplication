@@ -20,6 +20,12 @@ public class Course {
     public Course() {
     }
 
+    public Course(String name, String teacher, String description) {
+        this.name = name;
+        this.teacher = teacher;
+        this.description = description;
+    }
+
     public long getId() {
         return id;
     }

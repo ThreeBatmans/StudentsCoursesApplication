@@ -15,9 +15,18 @@ public class Student {
     private String pic;
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    public Set<Course> courses;
+    public
+    Set<Course> courses;
 
     public Student() {
+    }
+
+    public Student(String firstName, String lastName, String doB, String pic, Set<Course> courses) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        DoB = doB;
+        this.pic = pic;
+        this.courses = courses;
     }
 
     public long getId() {

@@ -27,6 +27,12 @@ public class HomeController {
     @Autowired
     CloudinaryConfig cloudc;
 
+    @GetMapping("/")
+    public String Homepage(Model model){
+        model.addAttribute("courses",courseRepository.findAll());
+        return "index";
+    }
+
     @GetMapping("/addstudent")
     public String addStudent(Model model){
         model.addAttribute("student",new Student());

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color: #c1c9d6">
+<nav  th:fragment="navlink" class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" style="font-size: 1.5vw" href="#">Company logo</a>
+
+    <div class="navbar-expand " style="margin-left: 200px;font-size: 1.5vw">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active mr-5">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item mr-5">
+                <a class="nav-link" href="/adddepartment">Add Department</a>
+            </li>
+            <li class="nav-item mr-5">
+                <a class="nav-link" href="/addemployee">Add Employee</a>
+            </li>
+            <li class="nav-item mr-5">
+                <a class="nav-link" href="/register">Sign up</a>
+            </li>
+            <li class="nav-item mr-5">
+                <a class="nav-link" href="/login">Sign in</a>
+            </li>
+            <li class="nav-item mr-5">
+                <a class="nav-link " href="http://petrosmelake.ga/"  target="_blank"  tabindex="-1" >About me</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#" tabindex="-1" >Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+<div class="container" >
+
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+            <h1 class="my-4 pt-5">Course List</h1>
+
+            <div th:each="course: ${courses}"  class="card" >
+                <div class="card-body">
+                   Course name :  <span th:text="${course.name}"></span><br/>
+                    Instructor :  <span th:text="${course.teacher}"></span><br/>
+                    Course Id:  <span th:text="${course.id}"></span><br/>
+                    Description:  <span th:text="${course.description}"></span><br/>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <a style="margin: 10px" class="btn btn-primary" th:href="@{/update/course/{id}(id=${course.id})}">Update</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a style="margin: 10px"  class="btn btn-info"th:href="@{/detail/course/{id}(id=${course.id})}">Detail</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a style="margin: 10px" class="btn btn-danger" th:href="@{/delete/course/{id}(id=${course.id})}">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Pagination -->
+
+
+
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4 " >
+            <br/><br/><br/><br/><br/>
+            <!-- Search Widget -->
+            <div class="card my-4"  >
+                <h5 class="card-header">Search Course</h5>
+                <div class="card-body">
+                    <form class="form-inline" th:action="@{/searchcourse}" method="post">
+                        <input type="text" name="search" class="form-control" placeholder="Search for...">
+                        <span >
+                <button class="btn btn-secondary" type="submit" name="submit">Go!</button>
+              </span>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Categories Widget -->
+
+            <div class="card my-4"  >
+                <h5 class="card-header">Search Student</h5>
+                <div class="card-body">
+                    <form class="form-inline" th:action="@{/searchstudent}" method="post">
+                        <input type="text" name="search" class="form-control" placeholder="Search for...">
+                        <span >
+                <button class="btn btn-secondary" type="submit" name="submit">Go!</button>
+              </span>
+                    </form>
+                </div>
+            </div>
+            <!-- Side Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Side Widget</h5>
+                <div class="card-body">
+                    You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+    <br/><br/>
+    <div class="row" style="padding-left: 200px" >
+        <ul class="pagination justify-content-center mb-1">
+            <li class="page-item">
+                <a class="page-link" href="#">&larr; Older</a>
+            </li>
+            <li class="page-item disabled">
+                <a class="page-link" href="#">Newer &rarr;</a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
