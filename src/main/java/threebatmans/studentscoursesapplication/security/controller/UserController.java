@@ -1,6 +1,7 @@
 package threebatmans.studentscoursesapplication.security.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import threebatmans.studentscoursesapplication.security.binder.UserBinder;
@@ -12,6 +13,7 @@ import threebatmans.studentscoursesapplication.security.repository.UserRepositor
 import java.util.List;
 import java.util.Optional;
 
+@Controller
 @RequestMapping("/user")
 public class UserController {
 
@@ -28,10 +30,10 @@ public class UserController {
 
     @GetMapping("/create")
     private String create(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserBinder());
         model.addAttribute("action","/user/create");
         model.addAttribute("method", "POST");
-        return "user_create";
+        return "Registration";
     }
 
     @PostMapping("/create")
@@ -45,20 +47,21 @@ public class UserController {
             userBinder.setId(0);
             model.addAttribute("user", userBinder);
 
-            return "user_update";
+            return "Registration";
         }
 
-        // if BOTH password and passwordVerify is not empty and it is not match!
-        if (!(userBinder.getPassword().trim().equals("") && userBinder.getPasswordVerify().trim().equals("") &&
-                userBinder.getPassword().trim().equals(userBinder.getPasswordVerify().trim())))  {
-            model.addAttribute("error", "Password and Password Verify do not match.");
+        // if password or passwordVerify is empty or it is not match!
+        if ((!userBinder.getPassword().trim().equals(userBinder.getPasswordVerify().trim()))||
+                (userBinder.getPassword().trim().equals(""))){
+            model.addAttribute("error", "Password and Password Verify is empty or do not match.");
             model.addAttribute("user", userBinder);
-            return "user_update";
+            return "Registration";
         }
 
-        userRepository.save(userBinder.toUser());
-
-        return "redirect:/user/retrieve?success=Created&id="+userBinder.getId();
+        User user = userBinder.toUser();
+        userRepository.save(user);
+        return "redirect:/login?success=Registered";
+        //return "redirect:/user/retrieve?success=Created&id="+user.getId();
     }
 
     @GetMapping("/retrieve")

@@ -38,15 +38,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         httpSecurity    .authorizeRequests()
                 .antMatchers(
-                        "/",
+
                         "/login",
                         "/logout",
                         "/js/**",
                         "/css/**",
                         "/images/**",
-                        "/search/**",
-                        "/employee/search",
-                        "/department/search"
+                        "/style.css",
+                        "/asset/**",
+                        "/register",
+                        "/user/create"
+
+
                 )
                 .permitAll();
 

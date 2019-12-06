@@ -1,14 +1,16 @@
 package threebatmans.studentscoursesapplication.security.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class LoginController {
+public class RedirectSecurityController {
 
-    @GetMapping("/login")
-    private String login() {
-        return "login";
-    }
+
+
+        @GetMapping("/register")
+        private String user_create() {
+            return "redirect:/user/create";
+        }
+
 }

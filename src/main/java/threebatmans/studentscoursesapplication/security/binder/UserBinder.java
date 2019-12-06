@@ -17,7 +17,7 @@ public class UserBinder {
     private String username;
     private String password;
     private String passwordVerify;
-    private List<Authority> authorities;
+    private List<Authority> authorities = new ArrayList<>();
     private String firstname;
     private String lastname;
 
