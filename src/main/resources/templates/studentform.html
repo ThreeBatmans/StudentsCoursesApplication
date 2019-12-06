@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color: #c1c9d6">
+
+<h4 style="padding-top: 50px;padding-left: 200px">Student Form</h4>
+<form autocomplete="off"  action="#"  th:action="@{/processstudent}" th:object="${student}" method="post" enctype="multipart/form-data" style="width: 600px;padding-left: 200px;padding-top: 50px">
+    <div class="form-group">
+        <input type="hidden"  th:field="*{id}">
+        <input type="hidden" th:field="*{pic}">
+    </div>
+    <div class="form-group">
+        <label for="formGroupExampleInput">First Name</label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="First Name"  th:field="*{firstName}">
+        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+    </div>
+    <div class="form-group">
+        <label for="formGroupExampleInput1">Last Name</label>
+        <input type="text" class="form-control" id="formGroupExampleInput1" placeholder="Last Name" th:field="*{lastName}">
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+    </div>
+    <div class="form-group">
+        <label for="formGroupExampleInput12">DOB</label>
+        <input type="text" class="form-control" id="formGroupExampleInput12" placeholder="Date of birth" th:field="*{dob}">
+        <span th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="formGroupExampleInput123">Department</label>
+        <select name = "courseId" id="formGroupExampleInput123"  class="custom-select mr-sm-2">
+            <option th:each="course: ${courses}" th:value="${course.id}" th:text="${course.name}">
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="formGroupExampleInput123">Input Image</label>
+        <input class="form-control-file" type="file" name="file">
+    </div>
+
+
+    <button  type="submit" class="btn btn-primary">Submit</button>
+</form>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
